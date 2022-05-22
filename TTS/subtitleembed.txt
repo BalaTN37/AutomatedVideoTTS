@@ -1,0 +1,1 @@
+ffmpeg -i box.mp4 -filter_complex "subtitles=subtitle_trail.srt:force_style='Alignment=10,BackColour=&H80000000,BorderStyle=4,Fontsize=11'" output.mp4
