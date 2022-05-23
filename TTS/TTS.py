@@ -1,6 +1,7 @@
 # Import the required module for text 
 # to speech conversion
 from gtts import gTTS
+from mutagen.mp3 import MP3
 # This module is imported so that we can 
 # play the converted audio
 import os
@@ -12,6 +13,7 @@ def readTextFile(InputFilePath):
         for line in my_file:
             text_array.append(line)
             #print(line)
+    return text_array
     txtarry_length = len(text_array)
     #print("TextFile Length : ",txtarry_length)
 
@@ -37,3 +39,25 @@ def GetTTSOutput(InputText, OutputFilePath, Lang ='en'):
       
     # Playing the converted file
     # os.system("mpg321 welcome.mp3")
+ 
+def Getmusicduration(InputFilePath):
+    audio = MP3(InputFilePath)
+    #print(audio.info.length) 
+    return(audio.info.length)
+    
+def TriggerTTSOut(text_array, OutputPath):
+    txtarry_length = len(text_array)
+    pathtomp3file = []
+    mp3Length = []
+    for i in range(txtarry_length):
+        print(OutputPath + "\\" + str(i) + ".mp3")
+        print(text_array[i])
+        if text_array[i] != '\n':
+            pathtomp3file.append(OutputPath + "\\" + str(i) + ".mp3")
+            GetTTSOutput(text_array[i], OutputPath + "\\" + str(i) + ".mp3", Lang ='en')
+            mp3Length.append(Getmusicduration(OutputPath + "\\" + str(i) + ".mp3"))
+        else:
+            pathtomp3file.append("None")
+            mp3Length.append(3)
+            print("Empty Line")
+    return pathtomp3file, mp3Length 
