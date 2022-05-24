@@ -1,9 +1,11 @@
 from TTS import *
-from music import *
+from handleSrt import *
 
 #User Input 
 #noOfVideo = input("Enter no of videos to be created :") #Disabled for development
 noOfVideo = 1
+
+inputVideo = "D:\\GIT\\TTS\\box.mp4"
 
 inputTxtFile_array = []
 for i in range(int(noOfVideo)):
@@ -13,7 +15,7 @@ for i in range(int(noOfVideo)):
 
 #OutputPath = input("Enter OutputPath :") #Disabled for development
 OutputPath = "D:\GIT\TTS\output"
-print("Received File Paths : ", inputTxtFile_array)
+#print("Received File Paths : ", inputTxtFile_array)
 #End of User Input 
 
 for i in range(int(noOfVideo)):
@@ -21,11 +23,14 @@ for i in range(int(noOfVideo)):
     if not os.path.exists(OutputPath+"\\"+str(i)):
         os.makedirs(OutputPath+"\\"+str(i))
     pathtomp3file, mp3Length = TriggerTTSOut(text_array,OutputPath+"\\"+str(i))
-    
-print("Path to mp3 File", pathtomp3file)
-print("mp3 length", mp3Length)
+    print("Input Texts", text_array)
+    print("Path to mp3 File", pathtomp3file)
+    print("mp3 length", mp3Length)
 
-
+for i in range(int(noOfVideo)):
+    createSubtitle(mp3Length, text_array, OutputPath, i)
+    mergeSubtitle(inputVideo, OutputPath+"\\Output_"+str(i)+".srt", OutputPath, i)
+    #Burn Subtitle
 
 
 

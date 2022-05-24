@@ -50,8 +50,8 @@ def TriggerTTSOut(text_array, OutputPath):
     pathtomp3file = []
     mp3Length = []
     for i in range(txtarry_length):
-        print(OutputPath + "\\" + str(i) + ".mp3")
-        print(text_array[i])
+        #print(OutputPath + "\\" + str(i) + ".mp3")
+        #print(text_array[i])
         if text_array[i] != '\n':
             pathtomp3file.append(OutputPath + "\\" + str(i) + ".mp3")
             GetTTSOutput(text_array[i], OutputPath + "\\" + str(i) + ".mp3", Lang ='en')
@@ -59,5 +59,5 @@ def TriggerTTSOut(text_array, OutputPath):
         else:
             pathtomp3file.append("None")
             mp3Length.append(3)
-            print("Empty Line")
+            #print("Empty Line")
     return pathtomp3file, mp3Length 
