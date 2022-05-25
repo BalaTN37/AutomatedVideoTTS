@@ -41,7 +41,7 @@ def createSubtitle(mp3Length, text_array, OutputPath, i):
 
 
 def mergeSubtitle(inputVideo, inputSubtitle, OutputPath, i):
-    temp_string = "ffmpeg -i " + inputVideo + " -filter_complex "
+    temp_string = "ffmpeg -y -i " + inputVideo + " -filter_complex "
     temp_string = temp_string + "\"subtitles=" + "output_" + str(i) + ".srt" + ":force_style='Alignment=10,BackColour=&H80000000,BorderStyle=4,Fontsize=11'\" " 
     temp_string = temp_string + OutputPath + "\output_" + str(i) +".mp4"
     print(temp_string)

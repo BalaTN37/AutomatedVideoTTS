@@ -1,5 +1,6 @@
 from TTS import *
 from handleSrt import *
+from music import *
 
 #User Input 
 #noOfVideo = input("Enter no of videos to be created :") #Disabled for development
@@ -30,6 +31,7 @@ for i in range(int(noOfVideo)):
 for i in range(int(noOfVideo)):
     createSubtitle(mp3Length, text_array, OutputPath, i)
     mergeSubtitle(inputVideo, OutputPath+"\\Output_"+str(i)+".srt", OutputPath, i)
+    mergeMP3toVideo(OutputPath+"\output_"+str(i)+".mp4", pathtomp3file, mp3Length, OutputPath, i)
     #Burn Subtitle
 
 
